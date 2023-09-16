@@ -60,17 +60,18 @@
                      <th>仕入先コード</th>
                  </tr>
                  <?php
-                 // 配列の中身を順番に取り出し、表形式で出力する
+                 /*配列の中身を順番に取り出し、表形式で出力する
+                  ['product_code','product_name','price','stock_quantity','vendor_code']
+                  は$productsの配列（カラム名）で、データベースのテーブルを開くと表示してある*/
                  foreach ($products as $product) {
                      $table_row = "
-                         <tr> /* 'product_code','product_name','price','stock_quantity','vendor_code'
-                               は$productsの配列（カラム名）で、データベースのテーブルを開くと表示してある*/
-                         <td>{$product['product_code']}</td>
+                         <tr> 
+                         <td>{$product['product_code']}</td>  
                          <td>{$product['product_name']}</td>
                          <td>{$product['price']}</td>
                          <td>{$product['stock_quantity']}</td>
                          <td>{$product['vendor_code']}</td>                        
-                         </tr>                    
+                         </tr>        
                      ";
                      echo $table_row;
                  }
@@ -81,6 +82,5 @@
      <footer>
          <p class="copyright">&copy; 商品管理アプリ All rights reserved.</p>
      </footer>
- </body>
- 
+ </body> 
  </html>
