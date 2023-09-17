@@ -25,15 +25,16 @@
 
         // SQL文を実行する
         $stmt_insert->execute();
-
         // 追加した件数を取得する
         $count = $stmt_insert->rowCount();
- 
-        $message = "商品を{$count}件登録しました。";
-    
-        // 商品一覧ページにリダイレクトさせる（同時にmessageパラメータも渡す）
+        /* ↑ rowCount() = SQLのINSERT、UPDATE、DELETE文で追加、更新、削除した件数を
+           取得するPDOStatementクラスのメソッド。$stmt_insert->rowCount()のように、
+           PDOStatementクラスのオブジェクトに対して使う。*/
+        $message = "商品を{$count}件登録しました。";         
+              
+        /* ↓ 商品一覧ページにリダイレクトさせる
+           ↓ 同時にmessageパラメータをread.phpに渡し、if(isset($_GET['message']))などの記述で受け取らせる*/
         header("Location: read.php?message={$message}");
-
         
     } catch (PDOException $e) {
         exit($e->getMessage());
