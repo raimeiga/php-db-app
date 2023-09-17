@@ -26,8 +26,15 @@
         // SQL文を実行する
         $stmt_insert->execute();
 
-        // 商品一覧ページにリダイレクトさせる
-        header("Location: read.php");
+        // 追加した件数を取得する
+        $count = $stmt_insert->rowCount();
+ 
+        $message = "商品を{$count}件登録しました。";
+    
+        // 商品一覧ページにリダイレクトさせる（同時にmessageパラメータも渡す）
+        header("Location: read.php?message={$message}");
+
+        
     } catch (PDOException $e) {
         exit($e->getMessage());
     }
