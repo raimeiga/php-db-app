@@ -4,6 +4,34 @@
 // MAMPを利用しているMacユーザーの方は、''ではなく'root'を代入してください
  $password = '';
  
+ // submitパラメータの値が存在するとき（「登録」ボタンを押したとき）の処理
+ if (isset($_POST['submit'])) {
+    try {
+        $pdo = new PDO($dsn, $user, $password);
+
+        // 動的に変わる値をプレースホルダに置き換えたINSERT文をあらかじめ用意する
+        $sql_insert = '
+            INSERT INTO products (product_code, product_name, price, stock_quantity, vendor_code)
+            VALUES (:product_code, :product_name, :price, :stock_quantity, :vendor_code)
+        ';
+        $stmt_insert = $pdo->prepare($sql_insert);
+
+        // bindValue()メソッドを使って実際の値をプレースホルダにバインドする（割り当てる）
+        $stmt_insert->bindValue(':product_code', $_POST['product_code'], PDO::PARAM_INT);
+        $stmt_insert->bindValue(':product_name', $_POST['product_name'], PDO::PARAM_STR);
+        $stmt_insert->bindValue(':price', $_POST['price'], PDO::PARAM_INT);
+        $stmt_insert->bindValue(':stock_quantity', $_POST['stock_quantity'], PDO::PARAM_INT);
+        $stmt_insert->bindValue(':vendor_code', $_POST['vendor_code'], PDO::PARAM_INT);
+
+        // SQL文を実行する
+        $stmt_insert->execute();
+
+        // 商品一覧ページにリダイレクトさせる
+        header("Location: read.php");
+    } catch (PDOException $e) {
+        exit($e->getMessage());
+    }
+}
  // セレクトボックスの選択肢として設定するため、仕入先コードの配列を取得する
  try {
      $pdo = new PDO($dsn, $user, $password);
