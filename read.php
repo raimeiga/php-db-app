@@ -20,7 +20,7 @@
     } else {
         $keyword = NULL;
     }
-    
+
     // orderパラメータの値によってSQL文を変更する  
     if ($order === 'desc') {
         $sql_select = 'SELECT * FROM products WHERE product_name LIKE :keyword ORDER BY updated_at DESC';    } else {
@@ -76,17 +76,17 @@
              <h1>商品一覧</h1>
              <div class="products-ui">
                  <div>
-                 <a href="read.php?order=desc">
+                 <a href="read.php?order=desc&keyword=<?=$keyword?>">
                    <img src="images/desc.png" alt="降順に並び替え" class="sort-img">
                  </a>
-                 <a href="read.php?order=asc">
+                 <a href="read.php?order=asc&keyword=<?=$keyword?>">
                    <img src="images/asc.png" alt="昇順に並び替え" class="sort-img">
                  </a>
                  <!-- getとpostの役割りを書いとけ   -->
                  <form action="read.php" method="get" class="search-form">
+                   <input type="hidden" name="order" value="<?= $order ?>">
                    <input type="text" class="search-box" placeholder="商品名で検索" name="keyword" value="<?= $keyword ?>">
-                 
-                </form> 
+                 </form> 
                  </div>
 
                  <a href="#" class="btn">商品登録</a>
