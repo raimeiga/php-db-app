@@ -23,7 +23,8 @@
 
     // orderパラメータの値によってSQL文を変更する  
     if ($order === 'desc') {
-        $sql_select = 'SELECT * FROM products WHERE product_name LIKE :keyword ORDER BY updated_at DESC';    } else {
+        $sql_select = 'SELECT * FROM products WHERE product_name LIKE :keyword ORDER BY updated_at DESC';    
+    } else {
         $sql_select = 'SELECT * FROM products WHERE product_name LIKE :keyword ORDER BY updated_at ASC';    
         }
      // SQL文を用意する
@@ -78,20 +79,21 @@
              }
              ?>
              <div class="products-ui">
-                 <div>
+                 <div>   
                  <a href="read.php?order=desc&keyword=<?=$keyword?>">
                    <img src="images/desc.png" alt="降順に並び替え" class="sort-img">
                  </a>
                  <a href="read.php?order=asc&keyword=<?=$keyword?>">
                    <img src="images/asc.png" alt="昇順に並び替え" class="sort-img">
                  </a>
-                 <!-- getとpostの役割りを書いとけ   -->
                  <form action="read.php" method="get" class="search-form">
-                   <input type="hidden" name="order" value="<?= $order ?>">
-                   <input type="text" class="search-box" placeholder="商品名で検索" name="keyword" value="<?= $keyword ?>">
+                    <input type="hidden" name="order" value="<?= $order ?>">
+                    <input type="text" class="search-box" placeholder="商品名で検索" name="keyword" value="<?= $keyword ?>">
                  </form> 
                  </div>
-
+                     <!-- 2つのaタグにkeyword=<?=$keyword?>（パラメータとその値）を書く理由と、
+                     <input type="hidden"をformタグに書く理由はGoogle Keepに書いておいた
+                     タイトル「php-db-app/read.phpの降順・昇順ボタンと検索機能のコード説明」 -->
                  <a href="create.php" class="btn">商品登録</a>
              </div>
              <table class="products-table">
