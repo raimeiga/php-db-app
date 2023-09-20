@@ -78,6 +78,7 @@
                  echo "<p class='success'>{$_GET['message']}</p>";
              }
              ?>
+             
              <div class="products-ui">
                  <div>   
                  <a href="read.php?order=desc&keyword=<?=$keyword?>">
@@ -91,9 +92,9 @@
                     <input type="text" class="search-box" placeholder="商品名で検索" name="keyword" value="<?= $keyword ?>">
                  </form> 
                  </div>
-                     <!-- 2つのaタグにkeyword=<?=$keyword?>（パラメータとその値）を書く理由と、
-                     <input type="hidden"をformタグに書く理由はGoogle Keepに書いておいた
-                     タイトル「php-db-app/read.phpの降順・昇順ボタンと検索機能のコード説明」 -->
+                    <!-- 2つのaタグにkeyword=<?=$keyword?>（パラメータとその値）を書く理由と、
+                    <input type="hidden"をformタグに書く理由はGoogle Keepに書いておいた
+                    タイトル「php-db-app/read.phpの降順・昇順ボタンと検索機能のコード説明」 -->
                  <a href="create.php" class="btn">商品登録</a>
              </div>
              <table class="products-table">
